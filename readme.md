@@ -29,7 +29,6 @@
     |   |-- gogoproto
     |   |   |-- gogo.proto
     |   |-- google
-    |       |-- .DS_Store
     |       |-- api
     |       |   |-- annotations.proto
     |       |   |-- http.proto
