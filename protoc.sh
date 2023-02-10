@@ -10,6 +10,10 @@ for dir in $proto_dirs; do
 done
 
 
-# move proto files to the right places
-cp -r github.com/worryFree56/grpc_study/types/* ./types/
-rm -rf github.com
+
+# protoc \
+#  -I "third_party/" \
+#  -I "proto" \
+# --grpc-gateway_out=logtostderr=true:. \
+#  --go_out=plugins=grpc:. \
+#   ./proto/mathv2.proto

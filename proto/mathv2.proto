@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package grpc_study.math;
+
+//引入third_party文件夹文件，
+//protoc时 需要带上 -I "third_party/"
+import  "google/api/annotations.proto";
+
+option go_package =  "./types";
+
+/*
+由于一些历史原因，基本数值类型的repeated的字段并没有被尽可能地高效编码。在新的代码中，用户应该使用特殊选项[packed=true]来保证更高效的编码。
+注意[packed=true]只能用在 repeated修饰的数字类型中
+*/
+message ReqMathv2 {
+    int64 a = 1;
+    int64 b = 2;
+
+    repeated Operation oper = 11 [packed=true];
+    /*
+    保留以后要用的编号和变量名，如果 定义了reserved，然后
+    int64  c = 11; 或者 int64 e=6;  编译都会报错
+    */
+    reserved 3,4,5 to 10;
+    reserved "c","d";
+}
+
+enum Operation {
+    Add  = 0;
+    Sub = 1;
+    Mul = 2;
+    Div = 3;
+}
+
+message ResMathv2 {
+    map<string,string> result = 1;   
+}
+
+
+service MathV2 {
+    rpc Operation (ReqMathv2) returns (ResMathv2) {
+        // http:localhost:port/grpc_study/math/v2/oper/0,2,3?a=1&b=2
+        option (google.api.http).get = "/grpc_study/math/v2/oper/{oper}";
+    }
+}
+
+//protoc --go_out=plugins=grpc:. --grpc-gateway_out=logtostderr=true:. -I=third_party -I=proto   ./proto/mathv2.proto

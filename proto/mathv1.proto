@@ -1,22 +1,24 @@
 syntax = "proto3";
 
-package grpc_study.math.v1;
+package grpc_study.math;
 
-option go_package = "github.com/worryFree56/grpc_study/types";
+option go_package = "./types";
 
 
-message ReqMath {
+message ReqMathv1 {
     int64 a = 1;
     int64 b = 2;
 }
 
-message ResMath {
+message ResMathv1 {
     int64 res = 1;   
 }
 
 service MathV1 {
-    rpc Add (ReqMath) returns (ResMath);
-    rpc Sub (ReqMath) returns (ResMath);
-    rpc Mul (ReqMath) returns (ResMath);
-    rpc Div (ReqMath) returns (ResMath);
+    rpc Add (ReqMathv1) returns (ResMathv1);
+    rpc Sub (ReqMathv1) returns (ResMathv1);
+    rpc Mul (ReqMathv1) returns (ResMathv1);
+    rpc Div (ReqMathv1) returns (ResMathv1);
 }
+  
+// protoc --go_out=plugins=grpc:.  ./proto/mathv1.proto

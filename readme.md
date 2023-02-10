@@ -11,16 +11,16 @@
     |-- go.sum
     |-- protoc.sh
     |-- readme.md
-    |-- client //客户端调用
+    |-- client //客户端
     |   |-- grpc
     |   |   |-- main.go
     |   |-- rest
     |       |-- main.go
     |-- core //逻辑实现
     |   |-- mathv1.go
-    |-- proto // proto 文件
+    |-- proto // 定义消息结构和服务接口
     |   |-- mathv1.proto
-    |-- service // 启动服务
+    |-- service // 服务端 
     |   |-- grpc
     |   |   |-- main.go
     |   |-- rest
@@ -36,25 +36,26 @@
     |       |-- protobuf
     |           |-- any.proto
     |           |-- descriptor.proto
-    |-- types
+    |-- types //编译的客户端和服务端的代码 
         |-- mathv1.pb.go
 ```
 
 
-### 初步学习 
+### mathv1
 - 完成proto基础编写，转成golang代码
 - 实现加减乘除
 - 启动grpc服务
 - 客户端调用
 
 
-### 进步学习1
-- 改变proto基础类型，设置一些参数
-- 实现加减乘除
-- 启动grpc，restful api
+### mathv2
+- 使用proto的修饰符，实现多个类型
+- 引入`google.api.http`,参阅`third_pary/google/api/annotations.proto`
+- 调用高精度包 `github.com/shopspring/decimal` ，处理加减乘除
+- 启动grpc,restful
 - 客户端调用
 
 
-### 进步学习2
+### mathv...
 - 实现传输安全调用
 ...
