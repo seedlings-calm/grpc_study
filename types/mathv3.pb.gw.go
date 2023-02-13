@@ -43,7 +43,7 @@ func request_MathV3_Operation_0(ctx context.Context, marshaler runtime.Marshaler
 
 	var (
 		val string
-		e   int32
+		es  []int32
 		ok  bool
 		err error
 		_   = err
@@ -54,13 +54,17 @@ func request_MathV3_Operation_0(ctx context.Context, marshaler runtime.Marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "oper")
 	}
 
-	e, err = runtime.Enum(val, Operationv3_value)
+	es, err = runtime.EnumSlice(val, ",", Operation_value)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "oper", err)
 	}
 
-	protoReq.Oper = Operationv3(e)
+	s := make([]Operation, len(es))
+	for i, v := range es {
+		s[i] = Operation(v)
+	}
+	protoReq.Oper = s
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
@@ -80,7 +84,7 @@ func local_request_MathV3_Operation_0(ctx context.Context, marshaler runtime.Mar
 
 	var (
 		val string
-		e   int32
+		es  []int32
 		ok  bool
 		err error
 		_   = err
@@ -91,13 +95,17 @@ func local_request_MathV3_Operation_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "oper")
 	}
 
-	e, err = runtime.Enum(val, Operationv3_value)
+	es, err = runtime.EnumSlice(val, ",", Operation_value)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "oper", err)
 	}
 
-	protoReq.Oper = Operationv3(e)
+	s := make([]Operation, len(es))
+	for i, v := range es {
+		s[i] = Operation(v)
+	}
+	protoReq.Oper = s
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
@@ -117,7 +125,7 @@ func request_MathV3_Operation_1(ctx context.Context, marshaler runtime.Marshaler
 
 	var (
 		val string
-		e   int32
+		es  []int32
 		ok  bool
 		err error
 		_   = err
@@ -139,13 +147,17 @@ func request_MathV3_Operation_1(ctx context.Context, marshaler runtime.Marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "oper")
 	}
 
-	e, err = runtime.Enum(val, Operationv3_value)
+	es, err = runtime.EnumSlice(val, ",", Operation_value)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "oper", err)
 	}
 
-	protoReq.Oper = Operationv3(e)
+	s := make([]Operation, len(es))
+	for i, v := range es {
+		s[i] = Operation(v)
+	}
+	protoReq.Oper = s
 
 	val, ok = pathParams["b"]
 	if !ok {
@@ -169,7 +181,7 @@ func local_request_MathV3_Operation_1(ctx context.Context, marshaler runtime.Mar
 
 	var (
 		val string
-		e   int32
+		es  []int32
 		ok  bool
 		err error
 		_   = err
@@ -191,13 +203,17 @@ func local_request_MathV3_Operation_1(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "oper")
 	}
 
-	e, err = runtime.Enum(val, Operationv3_value)
+	es, err = runtime.EnumSlice(val, ",", Operation_value)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "oper", err)
 	}
 
-	protoReq.Oper = Operationv3(e)
+	s := make([]Operation, len(es))
+	for i, v := range es {
+		s[i] = Operation(v)
+	}
+	protoReq.Oper = s
 
 	val, ok = pathParams["b"]
 	if !ok {
