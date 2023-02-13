@@ -31,10 +31,12 @@ message Res {
 service MathV3 {
     rpc Operation (ReqMathv3) returns (ResMathv3) {
         option (google.api.http) = {
-            get: "/grpc_study/math/v2/oper/{oper}"
+            //http:localhost:port/grpc_study/math/v3/oper/0,2,3?a=1&b=2
+            get: "/grpc_study/math/v3/oper/{oper}"
             //定义多个http请求方法
             additional_bindings {
-                get: "/grpc_study/math/v2/oper/{a}/{oper}/{b}"
+                //http:localhost:port/grpc_study/math/v3/oper/1/1,2/1
+                get: "/grpc_study/math/v3/oper/{a}/{oper}/{b}"
             }
         };
     }

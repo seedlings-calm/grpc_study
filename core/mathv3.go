@@ -8,11 +8,11 @@ import (
 	"github.com/worryFree56/grpc_study/types"
 )
 
-type MatchV3 struct{}
+type MathV3 struct{}
 
-var _ types.MathV3Server = new(MatchV3)
+var _ types.MathV3Server = new(MathV3)
 
-func (MatchV3) Operation(ctx context.Context, req *types.ReqMathv3) (res *types.ResMathv3, err error) {
+func (MathV3) Operation(ctx context.Context, req *types.ReqMathv3) (res *types.ResMathv3, err error) {
 	a := req.GetA()
 	b := req.GetB()
 	var resv3 []*types.Res

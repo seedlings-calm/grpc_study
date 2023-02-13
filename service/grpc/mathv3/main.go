@@ -19,7 +19,7 @@ func main() {
 	//注册拦截器
 	s := grpc.NewServer(grpc.UnaryInterceptor(service.ServerUnaryInterceptor))
 	//注册grpc服务
-	types.RegisterMathV3Server(s, &core.MatchV3{})
+	types.RegisterMathV3Server(s, &core.MathV3{})
 
 	err = s.Serve(lis)
 	if err != nil {
