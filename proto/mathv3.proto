@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package grpc_study.math;
+
+//https://github.com/gogo/protobuf/blob/master/extensions.md 文档
+import "gogoproto/gogo.proto";
+import  "google/api/annotations.proto";
+
+
+option go_package = "./types";
+
+message ReqMathv3 {
+
+    //customtype 重铸类型
+    string a = 1 [ (gogoproto.customtype) = "github.com/shopspring/decimal.Decimal"];
+    string b = 2 [ (gogoproto.customtype) = "github.com/shopspring/decimal.Decimal"];
+    //customname 修改编译后字段名称
+    Operationv3 oper = 3 [(gogoproto.customname) = "Operation"];
+}
+
+enum Operationv3 {
+    //goproto_enum_prefix 在没有MessageType前缀的情况下生成枚举常数名称
+    option (gogoproto.goproto_enum_prefix) = false;
+
+    Add  = 0;
+    Sub  = 1;
+    Mul  = 2;
+    Div  = 3;
+}
+
+message ResMathv3 {
+    int64 code = 1;
+    repeated Res result = 2;
+}
+
+message Res {
+    string type  = 1;
+    string value = 2 [(gogoproto.customtype) = "github.com/shopspring/decimal.Decimal"];
+}
+
+service MathV3 {
+    rpc Operation (ReqMathv3) returns (ResMathv3) {
+        option (google.api.http) = {
+            get: "/grpc_study/math/v2/oper/{oper}"
+            //定义多个http请求方法
+            additional_bindings {
+                get:"/grpc_study/math/v2/oper/{a}/{oper}/{b}"
+            }
+        };
+    };
+}
+
+//protoc --go_out=plugins=grpc:. --grpc-gateway_out=logtostderr=true:. -I=third_party -I=proto   ./proto/mathv3.proto

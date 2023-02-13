@@ -3,6 +3,7 @@ module github.com/worryFree56/grpc_study
 go 1.19
 
 require (
+	github.com/gogo/protobuf v1.3.2
 	github.com/golang/protobuf v1.5.2
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0
 	github.com/shopspring/decimal v1.3.1

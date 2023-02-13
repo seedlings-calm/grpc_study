@@ -16,4 +16,4 @@ done
 #  -I "proto" \
 # --grpc-gateway_out=logtostderr=true:. \
 #  --go_out=plugins=grpc:. \
-#   ./proto/mathv2.proto
+#   ./proto/mathv3.proto

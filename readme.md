@@ -56,6 +56,39 @@
 - 客户端调用
 
 
+
+### mathv3
+- grpc安全认证ssl/tls 实现
+
+```js
+//CA证书制作
+//openssl 生成证书 .key私钥文件
+openssl genrsa -out ca.key 2048
+//生成.csr 证书签名请求文件
+openssl req -new -key ca.key -out ca.csr -subj "/C=CN/L=ZHENGZHOU/O=PLUGCHAINN/OU=PC/CN=127.0.0.1"
+// 自签名升成.crt证书文件
+openssl req -new -x509 -days 3650 -key ca.key -out ca.crt  -subj "/C=CN/L=ZHENGZHOU/O=PLUGCHAINN/OU=PC/CN=127.0.0.1"
+
+//服务端证书制作
+//生成.key  私钥文件
+openssl genrsa -out server.key 2048
+
+//生成.csr 证书签名请求文件
+openssl req -new -key server.key -out server.csr \
+	-subj "/C=CN/L=ZHENGZHOU/O=PLUGCHAINN/OU=PC/CN=127.0.0.1" \
+	-reqexts SAN \
+	-config <(cat /usr/local/etc/openssl@3/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:127.0.0.1"))
+
+//签名生成.crt 证书文件
+openssl x509 -req -days 3650 \
+   -in server.csr -out server.crt \
+   -CA ca.crt -CAkey ca.key -CAcreateserial \
+   -extensions SAN \
+   -extfile <(cat /usr/local/etc/openssl@3/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:127.0.0.1"))
+
+   
+```
+
 ### mathv...
 - 实现传输安全调用
 ...
