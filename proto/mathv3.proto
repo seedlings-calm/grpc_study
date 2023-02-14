@@ -40,3 +40,6 @@ service MathV3 {
 }
 
 //protoc --go_out=plugins=grpc:. --grpc-gateway_out=logtostderr=true:. -I=third_party -I=proto   ./proto/mathv3.proto
+
+// protoc --gofast_out=plugins=grpc:. --grpc-gateway_out=logtostderr=true:. -I=third_party -I=proto   ./proto/mathv3.proto
+
