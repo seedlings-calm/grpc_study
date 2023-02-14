@@ -59,6 +59,9 @@
 
 ### mathv3
 - 实现拦截器 ，用于打印日志，查看请求方法，统计接口访问次数等功能
+- #TODO 未解决 引入gogoproto编译文件未生效配置（customtype，customname等条件）
+- 启动grpc,restful
+
 
 ### mathv...
 - 实现传输安全调用

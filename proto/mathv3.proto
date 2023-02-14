@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package grpc_study.math;
 
-//https://github.com/gogo/protobuf/blob/master/extensions.md 文档
-import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "mathv2.proto";
 
@@ -11,11 +9,10 @@ option go_package = "./types";
 
 message ReqMathv3 {
 
-    //customtype 重铸类型
-    string a = 1 [ (gogoproto.customtype) = "github.com/shopspring/decimal.Decimal"];
-    string b = 2 [ (gogoproto.customtype) = "github.com/shopspring/decimal.Decimal"];
+    string a = 1 ;
+    string b = 2 ;
     //customname 修改编译后字段名称
-    repeated Operation oper = 3 [packed=true,(gogoproto.customname) = "Operation"];
+    repeated Operation oper = 3 [packed=true];
 }
 
 message ResMathv3 {
@@ -25,7 +22,7 @@ message ResMathv3 {
 
 message Res {
     string type  = 1;
-    string value = 2 [(gogoproto.customtype) = "github.com/shopspring/decimal.Decimal"];
+    string value = 2;
 }
 
 service MathV3 {
