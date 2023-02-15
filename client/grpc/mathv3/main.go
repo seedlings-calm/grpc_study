@@ -8,6 +8,7 @@ import (
 	"github.com/worryFree56/grpc_study/client"
 	"github.com/worryFree56/grpc_study/types"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/metadata"
 )
 
 func main() {
@@ -17,14 +18,25 @@ func main() {
 		log.Fatal(err)
 	}
 	defer conn.Close()
+	//自定义header
+	md := metadata.New(map[string]string{
+		"name":     "client-name",
+		"nickname": "client-nickname",
+	})
+	//初始化一个 新的context
+	ctx := metadata.NewOutgoingContext(context.Background(), md)
+	//追加内容
+	ctx = metadata.AppendToOutgoingContext(ctx, "description", "This is desc")
+
 	c := types.NewMathV3Client(conn)
-	r, err := c.Operation(context.Background(), &types.ReqMathv3{
+	var resmd metadata.MD
+	r, err := c.Operation(ctx, &types.ReqMathv3{
 		A: "1",
 		B: "2",
 		Oper: []types.Operation{
 			1, 2, 3,
 		},
-	})
+	}, grpc.Header(&resmd))
 	if err != nil {
 		log.Fatal(err)
 	}

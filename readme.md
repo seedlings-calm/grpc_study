@@ -58,11 +58,14 @@
 
 
 ### mathv3
-- 实现拦截器 ，用于打印日志，查看请求方法，统计接口访问次数等功能
-- #TODO 未解决 引入gogoproto编译文件未生效配置（customtype，customname等条件）
+- 实现拦截器 ，用于打印日志，查看请求方法参数，统计接口访问次数等功能
+- 实现自定义header（时间戳，trace信息等）
+- [ClientUnaryInterceptor](./client/interceptor.go),[ServerUnaryInterceptor](./service/interceptor.go)
 - 启动grpc,restful
 
 
+### mathv4
+- 实现 安全认证
 ### mathv...
 - 实现传输安全调用
 ...

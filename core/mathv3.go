@@ -2,10 +2,12 @@ package core
 
 import (
 	"context"
+	"log"
 	"reflect"
 
 	"github.com/shopspring/decimal"
 	"github.com/worryFree56/grpc_study/types"
+	"google.golang.org/grpc/metadata"
 )
 
 type MathV3 struct{}
@@ -13,6 +15,13 @@ type MathV3 struct{}
 var _ types.MathV3Server = new(MathV3)
 
 func (MathV3) Operation(ctx context.Context, req *types.ReqMathv3) (res *types.ResMathv3, err error) {
+	//获取client设置的header信息
+	md, ok := metadata.FromIncomingContext(ctx)
+	if ok {
+		log.Printf("Got md: %v", md)
+	}
+
+	//处理逻辑
 	a := req.GetA()
 	b := req.GetB()
 	var resv3 []*types.Res
@@ -41,6 +50,7 @@ func (MathV3) Operation(ctx context.Context, req *types.ReqMathv3) (res *types.R
 		}
 		resv3 = append(resv3, &operRes)
 	}
+
 	return &types.ResMathv3{
 		Code:   200,
 		Result: resv3,
