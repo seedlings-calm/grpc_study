@@ -69,3 +69,8 @@
 ### mathv...
 - 实现传输安全调用
 ...
+
+
+####
+
+[关于proto-gen-go的使用](https://blog.csdn.net/Little_Ji/article/details/129039912)
