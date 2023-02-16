@@ -98,8 +98,8 @@ func (MathV1) Div(ctx context.Context, req *types.ReqMathv1) (res *types.ResMath
 }
 ```
 
-### 具体功能实现了之后，就可以开启service，client调用了
-- grpc 服务启动
+### 发送与接收，service,client
+#### service 服务启动
 ```golang
 package main
 
@@ -129,7 +129,7 @@ func main() {
 	}
 }
 ```
-- 客户端调用
+#### client客户端调用
 ```go
 package main
 

@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package grpc_study.math;
 
-import "google/api/annotations.proto";
 import "mathv2/proto/mathv2.proto";
 
 option go_package = "github.com/worryFree56/grpc_study/src/mathv3/types";
@@ -25,18 +24,14 @@ message Res {
 }
 
 service MathV3 {
-    rpc Operation (ReqMathv3) returns (ResMathv3) {
-        option (google.api.http) = {
-            //http:localhost:port/grpc_study/math/v3/oper/0,2,3?a=1&b=2
-            get: "/grpc_study/math/v3/oper/{oper}"
-            //定义多个http请求方法
-            additional_bindings {
-                //http:localhost:port/grpc_study/math/v3/oper/1/1,2/1
-                get: "/grpc_study/math/v3/oper/{a}/{oper}/{b}"
-            }
-        };
-    }
+    rpc Operation (ReqMathv3) returns (ResMathv3);
 }
 
-//protoc --go_out=plugins=grpc:. --grpc-gateway_out=logtostderr=true:. -I=third_party  -I=src   ./src/mathv3/proto/mathv3.proto
+// protoc \
+//     -I=third_party \
+//     -I=src  \
+//     --go_out=plugins=grpc:. \
+//     ./src/mathv3/proto/mathv3.proto
+
+
 // mv github.com/worryFree56/grpc_study/src/mathv3/types/* src/mathv3/types/

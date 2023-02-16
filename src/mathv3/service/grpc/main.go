@@ -4,9 +4,9 @@ import (
 	"log"
 	"net"
 
-	"github.com/worryFree56/grpc_study/core"
-	"github.com/worryFree56/grpc_study/service"
-	"github.com/worryFree56/grpc_study/types"
+	"github.com/worryFree56/grpc_study/src/mathv3/core"
+	"github.com/worryFree56/grpc_study/src/mathv3/handle"
+	"github.com/worryFree56/grpc_study/src/mathv3/types"
 	"google.golang.org/grpc"
 )
 
@@ -17,7 +17,7 @@ func main() {
 	}
 
 	//注册拦截器，token安全认证
-	s := grpc.NewServer(grpc.UnaryInterceptor(service.ServerUnaryInterceptor))
+	s := grpc.NewServer(grpc.UnaryInterceptor(handle.ServerUnaryInterceptor))
 	//注册grpc服务
 	types.RegisterMathV3Server(s, &core.MathV3{})
 
