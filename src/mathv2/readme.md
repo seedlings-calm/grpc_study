@@ -1,6 +1,26 @@
 ## mathv2
 定义一个公用操作方法，根据enum参数来决定执行什么方法,实现`grpc`的服务和客户端调用，实现`restful`的服务和调用
 
+### 实例目录
+|-- src
+    |-- readme.md
+    |-- client
+    |   |-- grpc
+    |   |   |-- main.go
+    |   |-- rest
+    |       |-- main.go
+    |-- core
+    |   |-- mathv2.go
+    |-- proto
+    |   |-- mathv2.proto
+    |-- service
+    |   |-- grpc
+    |   |   |-- main.go
+    |   |-- rest
+    |       |-- main.go
+    |-- types
+        |-- mathv2.pb.go
+        |-- mathv2.pb.gw.go
 ### proto文件定义
 ```proto
 //github.com/worryFree56/grpc_study/src/mathv2/proto
