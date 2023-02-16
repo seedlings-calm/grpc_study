@@ -7,8 +7,8 @@ import (
 	"net/http"
 
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
-	"github.com/worryFree56/grpc_study/core"
-	"github.com/worryFree56/grpc_study/types"
+	"github.com/worryFree56/grpc_study/src/mathv2/core"
+	"github.com/worryFree56/grpc_study/src/mathv2/types"
 	"google.golang.org/grpc"
 )
 

@@ -5,7 +5,7 @@ import (
 	"reflect"
 
 	"github.com/shopspring/decimal"
-	"github.com/worryFree56/grpc_study/types"
+	"github.com/worryFree56/grpc_study/src/mathv2/types"
 )
 
 type MathV2 struct{}
