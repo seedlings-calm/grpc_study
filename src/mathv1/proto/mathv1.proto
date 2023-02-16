@@ -21,6 +21,15 @@ service MathV1 {
     rpc Div (ReqMathv1) returns (ResMathv1);
 }
   
-// protoc --go_out=plugins=grpc:. -I=src  ./src/proto/mathv1.proto
-// mv github.com/worryFree56/grpc_study/src/mathv1/types/* src/mathv1/types/
-// rm -rf github.com/  
+/*
+项目根目录编译proto文件为golang文件
+
+protoc \
+ --go_out=plugins=grpc:. \
+ -I=src  \
+ ./src/proto/mathv1.proto
+
+protoc命令的 `.` 表示当前目录，执行protoc命令生成的`*.pb.go`文件 会在 以当前目录生成`go_package`指定目录里面，以下命令把编译文件移到go_package目录
+mv github.com/worryFree56/grpc_study/src/mathv1/types/* src/mathv1/types/
+rm -rf github.com/  
+*/

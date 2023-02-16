@@ -4,8 +4,8 @@ import (
 	"log"
 	"net"
 
-	"github.com/worryFree56/grpc_study/core"
-	"github.com/worryFree56/grpc_study/types"
+	"github.com/worryFree56/grpc_study/src/mathv1/core"
+	"github.com/worryFree56/grpc_study/src/mathv1/types"
 	"google.golang.org/grpc"
 )
 

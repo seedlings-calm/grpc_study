@@ -16,7 +16,7 @@ func main() {
 		log.Fatal(err)
 	}
 	client := types.NewMathV1Client(conn)
-	resp, err := client.Div(context.Background(), &types.ReqMathv1{
+	resp, err := client.Add(context.Background(), &types.ReqMathv1{
 		A: 1,
 		B: 2,
 	})
