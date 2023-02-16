@@ -6,6 +6,21 @@
 ### 源码目录
 
 ```
+|-- src
+    |-- readme.md
+    |-- client
+    |   |-- grpc
+    |       |-- main.go
+    |-- core
+    |   |-- mathv3.go
+    |-- proto
+    |   |-- mathv3.proto
+    |-- service
+    |   |-- grpc
+    |       |-- main.go
+    |-- types
+        |-- mathv3.pb.go
+
 ```
 
 ### proto 定义，嵌套message，引入自定义mathv2.proto的 `enum Operation`
