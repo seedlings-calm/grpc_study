@@ -8,9 +8,10 @@ import (
 )
 
 func main() {
-	url := "http://127.0.0.1:3333/grpc_study/math/v2/oper/"
-	url += "0,1,2,3"
-	url += "?a=1&b=2222"
+	// url := "http://127.0.0.1:3333/grpc_study/math/v2/oper/"
+	// url += "0,1,2,3"
+	// url += "?a=1&b=2222"
+	url := "http://127.0.0.1:3333/grpc_study/math/v2/oper/1/0,1/2222"
 	resp, err := http.Get(url)
 	if err != nil {
 		log.Fatal(err)

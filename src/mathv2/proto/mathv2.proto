@@ -35,8 +35,15 @@ message ResMathv2 {
 
 service MathV2 {
     rpc Operation (ReqMathv2) returns (ResMathv2) {
-        // http:localhost:port/grpc_study/math/v2/oper/0,2,3?a=1&b=2
-        option (google.api.http).get = "/grpc_study/math/v2/oper/{oper}";
+        option (google.api.http) = {
+            //http:localhost:port/grpc_study/math/v2/oper/0,2,3?a=1&b=2
+            get: "/grpc_study/math/v2/oper/{oper}"
+            //定义多个http请求方法
+            additional_bindings {
+                //http:localhost:port/grpc_study/math/v2/oper/1/1,2/1
+                get: "/grpc_study/math/v2/oper/{a}/{oper}/{b}"
+            }
+        };
     }
 }
 
