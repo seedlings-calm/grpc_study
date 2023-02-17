@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+
+package  grpc_study.src.auth;
+
+option go_package = "github.com/worryFree56/grpc_study/src/auth/types";
+
+message SayMessage {
+    string export = 1;
+}
+
+service AuthToken  {
+    rpc SayMsg (SayMessage) returns (SayMessage);
+}
+
+
+// protoc \
+//     -I=src  \
+//     --go_out=plugins=grpc:. \
+//     ./src/auth/proto/auth.proto
+
+// mv github.com/worryFree56/grpc_study/src/auth/types/* src/auth/types/
+// rm -rf github.com/  

@@ -12,6 +12,8 @@
 - [mathv3 进阶学习](./src/mathv3/readme.md)
     - 拦截器学习
     - metadata的使用
+- [auth 进阶学习](./src/auth/readme.md)
+    - 自定义token验证，是否可以执行逻辑
 
 
 ### 测试功能 
