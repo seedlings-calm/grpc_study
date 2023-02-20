@@ -28,10 +28,7 @@ func main() {
 }
 
 func serviceUnaryServerInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
-	// md, ok := metadata.FromIncomingContext(ctx)
-	// if !ok {
-	// 	return nil, errors.New("missing metadata")
-	// }
+
 	ok, err := auth.IsValidJWToken(ctx)
 	if !ok {
 		return nil, errors.New("valid err:" + err.Error())
