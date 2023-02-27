@@ -5,7 +5,7 @@ State="steve"
 Location="ZhengZhou"
 Organization="plug"
 Organizational="plug"
-CommonName="ifcfx.com"
+CommonName="alfaex.me"
 
 
 

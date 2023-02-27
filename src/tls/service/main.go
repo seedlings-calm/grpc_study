@@ -1,13 +1,14 @@
 package main
 
 import (
+	"context"
 	"crypto/tls"
 	"crypto/x509"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 
+	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/worryFree56/grpc_study/src/tls/core"
 	"github.com/worryFree56/grpc_study/src/tls/types"
 	"google.golang.org/grpc"
@@ -15,12 +16,12 @@ import (
 )
 
 func main() {
-	cert, err := tls.LoadX509KeyPair("../../../cert/server.pem", "../../../cert/server.key")
+	cert, err := tls.LoadX509KeyPair("./cert/server.pem", "./cert/server.key")
 	if err != nil {
 		log.Fatal(err)
 	}
 	certPool := x509.NewCertPool()
-	ca, err := ioutil.ReadFile("../../../ca/ca.pem")
+	ca, err := ioutil.ReadFile("./ca/ca.pem")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -32,23 +33,27 @@ func main() {
 		ClientAuth:   tls.RequireAndVerifyClientCert,
 		ClientCAs:    certPool,
 	})
-	gsrv := grpc.NewServer(grpc.Creds(c))
+	// gsrv := grpc.NewServer(grpc.Creds(c))
 
-	types.RegisterHelloServer(gsrv, &core.Hello{})
+	// types.RegisterHelloServer(gsrv, &core.Hello{})
 	// lis,err := net.Listen("tcp",":3333")
 	// gsrv.Serve(lis)
 
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(r.Proto)
-		fmt.Println(r.Header)
-		gsrv.ServeHTTP(w, r)
+	// mux := http.NewServeMux()
+	mux := runtime.NewServeMux()
+	types.RegisterHelloHandlerServer(context.Background(), mux, &core.Hello{})
+	err = types.RegisterHelloHandlerFromEndpoint(context.Background(), mux, ":4443", []grpc.DialOption{
+		grpc.WithTransportCredentials(c),
 	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	httpServer := &http.Server{
-		Addr:    ":3333",
+		Addr:    ":4444",
 		Handler: mux,
 	}
-	err = httpServer.ListenAndServeTLS("../../../cert/server.pem", "../../../cert/server.key")
+	err = httpServer.ListenAndServeTLS("./cert/server.pem", "./cert/server.key")
 	if err != nil {
 		log.Fatal(err)
 	}

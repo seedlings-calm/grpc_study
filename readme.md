@@ -28,3 +28,6 @@
 
 
 [关于proto-gen-go的使用](https://blog.csdn.net/Little_Ji/article/details/129039912)
+
+
+https://v.youku.com/v_show/id_XMzM3NTk0NDI2MA==.html?spm=a2h0c.8166622.PhoneSokuUgcSeries_1.dscreenshot_3

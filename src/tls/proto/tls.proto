@@ -2,18 +2,30 @@ syntax = "proto3";
 
 package grpc_study.src.tls;
 
+import  "google/api/annotations.proto";
+
 option go_package = "github.com/worryFree56/grpc_study/src/tls/types";
 message MsgHello {
     string words = 1;
 }
 
 service Hello {
-    rpc Say (MsgHello) returns (MsgHello);
+    rpc Say (MsgHello) returns (MsgHello) {
+        option (google.api.http) = {
+            get: "/grpc_study/tls/say/{words}"
+            //定义多个http请求方法
+            additional_bindings {
+                get: "/grpc_study/tls/say"
+            }
+        };
+    }
 }
 
 // protoc \
 //     -I=src  \
+//     -I=third_party \
 //     --go_out=plugins=grpc:. \
+//     --grpc-gateway_out=logtostderr=true:. \
 //     ./src/tls/proto/tls.proto
 
 // mv github.com/worryFree56/grpc_study/src/tls/types/* ./src/tls/types/
